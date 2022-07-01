@@ -1,0 +1,52 @@
+﻿@page
+@model BookListRazor.Pages.Account.IndexModel
+@{
+}
+<h4> @Model.UserName</h4>
+
+@if (!string.IsNullOrEmpty(Model.UserName as string))
+{
+    <a asp-page="Welcome">Continue To Page</a>
+}
+else if (string.IsNullOrEmpty(Model.UserName as string))
+{
+<div class="container border" style="padding: 20px;">
+    @Model.Msg
+    <form method="post" asp-page="Index">
+        <div class="text-danger" asp-validation-summary="ModelOnly">
+
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="@Model.UserName"></label>
+            </div>
+            <div class="col-3">
+                <input type="text" asp-for="@Model.UserName" class="form-control" />
+            </div>
+            <span class="text-danger" asp-validation-for="@Model.UserName"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-3">
+                <label asp-for="@Model.Password"></label>
+            </div>
+            <div class="col-3">
+                <input type="password" asp-for="@Model.Password" class="form-control" />
+            </div>
+            <span class="text-danger" asp-validation-for="@Model.Password">
+
+            </span>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <input type="submit" value="Login" class="btn btn-primary" />
+            </div>
+        </div>
+    </form>
+</div>
+}
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
